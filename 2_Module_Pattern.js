@@ -46,3 +46,41 @@ var testModule = (function(){
 //usage
 testModule.incrementCounter()
 testModule.resetCounter()
+
+var basketModule = (function(){
+    var bascket = []
+    function doSomethingPrivate(){}
+
+    return {
+        addItem: function(values){
+            bascket.push(values)
+        },
+        getItemCount: function(){
+            return bascket.length
+        },
+        doSomething:doSomethingPrivate,
+        getTotal:function(){
+            var q = this.getItemCount(),
+                p = 0
+            while(q--){
+                p += bascket[q].price
+            }
+
+            return p
+        }
+    }
+})()
+//Usage
+basketModule.addItem({
+    item:'Bread',
+    price:0.5
+})
+
+basketModule.addItem({
+    item:'Butter',
+    price:0.3
+})
+
+basketModule.getTotal()
+basketModule.getItemCount()
+//==========================================
